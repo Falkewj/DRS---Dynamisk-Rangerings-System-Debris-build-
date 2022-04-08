@@ -1,0 +1,174 @@
+﻿@page "{handler?}"
+@using DRS___Dynamisk_Rangerings_System.Services
+@using DRS___Dynamisk_Rangerings_System.Pages.Admin
+@model DRS___Dynamisk_Rangerings_System.Pages.Standings.StandingsModel
+@{
+    ViewData["Title"] = "Standings";
+}
+@section Scripts
+{
+    <script>
+        function showModal(modalID) {
+            console.log(modalID);
+            $("#" + modalID).modal({ backdrop: "static" });
+            $("#" + modalID).modal("show");
+        }
+    </script>
+}
+
+<div style="float:right;" class="add-result-button mb-2">
+    <button onclick="showModal('add_result_modal')" class="btn btn-primary">
+        <i class="fa fa-sm fa-flag-checkered"></i>
+    </button>
+</div>
+
+<!--#Region Add Result Modal -->
+<div class="modal" id="add_result_modal">
+    <div class="modal-dialog add-result-modal">
+        <div class="modal-content">
+            <div class="input-group">
+                <form style="width:100%;" method="post">
+
+                    <div class="modal-header form-group">
+
+                        <label><b>Registrer Kamp Resultat</b></label>
+
+                    </div>
+
+                    <div class="modal-body form-group">
+
+                        @for (int i = 0; i < Model.SettingsService.GetMaxParticipants(); i++)
+                        {
+
+                            <div class="input-group mb-3">
+                                @{
+
+                                    if (i < 3)
+                                    { <label style="width:5.5rem;" class="input-group-text" for="inputSelect_@i">@(i + 1). Plads: </label> }
+                                    else
+                                    { <label style="width:5.5rem;" class="input-group-text">Tabt: </label> }
+                                }
+
+                                <select class="form-select" id="inputSelect_@i" asp-for="SelectedPartipantIDs[i]" asp-items="Model.ParticipantListItems"></select>
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                    <div class="modal-footer form-group">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+
+<table class="table table-bordered table-hover table-striped table-sm" width="60%">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>Name</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Name" asp-page-handler="SortByName"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>Matches</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Matches" asp-page-handler="SortByMatches"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Matches Descending" asp-page-handler="SortByMatchesDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+
+            </th>
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>Total Points</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Points" asp-page-handler="SortByPoints"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Points Descending" asp-page-handler="SortByPointsDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+
+            </th>
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>Wins</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Wins" asp-page-handler="SortByWins"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Wins Descending" asp-page-handler="SortByWinsDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>2nd</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Second" asp-page-handler="SortBySeconds"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Seconds Descending" asp-page-handler="SortBySecondsDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+
+            </th>
+            <th>
+                <div class="d-flex justify-content-between p-0">
+                    <div>Loss</div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Loss" asp-page-handler="SortByLoss"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Seconds Descending" asp-page-handler="SortByLossDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (@Model.Participants != null)
+        {
+            foreach (var participant in Model.Participants)
+            {
+
+                <tr>
+                    <td>
+                        @participant.Name
+                    </td>
+                    <td>
+                        @Model.ParticipantService.CalculateMatches(participant)
+                    </td>
+                    <td>
+                        @Model.SettingsService.CalculatePoints(participant)
+                    </td>
+                    <td>
+                        @participant.WonMatches
+                    </td>
+                    <td>
+                        @participant.SecondMatches
+                    </td>
+                    <td>
+                        @participant.LostMatches
+                    </td>
+                    @if (AdminLoginModel.Admin != null && AdminLoginModel.Admin.UserName == "admin")
+                    {
+                        <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="/Participant/EditParticipant" asp-route-id="@participant.Id"><i class="fa fa-edit"></i></a></td>
+                    }
+                </tr>
+
+            }
+        }
+
+
+    </tbody>
+</table>

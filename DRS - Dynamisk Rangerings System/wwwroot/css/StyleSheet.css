@@ -1,0 +1,15 @@
+﻿body {
+    /* The image used */
+    /*background-image: url("../AnyConv.com__Sports5.jpg");*/
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.test {
+    background-color: #ffffff;
+    opacity: 0.9;
+}

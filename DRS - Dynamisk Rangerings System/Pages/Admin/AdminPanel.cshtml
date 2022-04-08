@@ -1,0 +1,51 @@
+﻿@page
+@model DRS___Dynamisk_Rangerings_System.Pages.Admin.Admin_PanelModel
+@{ 
+    ViewData["Title"] = "AdminPanel";
+}
+
+<div class="settings-container">
+
+    <form method="post">
+
+        <hr />
+
+        <div class="input-group mb-3">
+
+            <label class="input-group-text settings-panel">Max antal deltagere pr. kamp:</label>
+            <input class="form-control" type="number" asp-for="@Model.Settings.MaxPlayersPerMatch" value="@Model.SettingsService.GetMaxParticipants()" />
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-check"></i></button>
+
+        </div>
+
+        <hr />
+
+        <div class="input-group mb-3">
+
+            <label class="input-group-text settings-panel">Point for vundet kamp:</label>
+            <input class="form-control" asp-for="@Model.Settings.PointsForWin" value="@Model.SettingsService.GetPoints(Services.SettingsService.SettingsTypes.WonPoints)" />
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-check"></i></button>
+
+        </div>
+
+        <div class="input-group mb-3">
+
+            <label class="input-group-text settings-panel">Point for uafgjort kamp:</label>
+            <input class="form-control" asp-for="@Model.Settings.PointsFor2nd" value="@Model.SettingsService.GetPoints(Services.SettingsService.SettingsTypes.SecondPoints)" />
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-check"></i></button>
+
+        </div>
+
+        <div class="input-group mb-3">
+
+            <label class="input-group-text settings-panel">Point for tabt kamp:</label>
+            <input class="form-control" asp-for="@Model.Settings.PointsForLoss" value="@Model.SettingsService.GetPoints(Services.SettingsService.SettingsTypes.LossPoints)" />
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-check"></i></button>
+
+        </div>
+
+        <hr />
+
+    </form>
+
+</div>

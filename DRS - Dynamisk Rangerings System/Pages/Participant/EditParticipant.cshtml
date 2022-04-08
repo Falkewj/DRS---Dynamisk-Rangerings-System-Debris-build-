@@ -1,0 +1,34 @@
+﻿@page
+@model DRS___Dynamisk_Rangerings_System.Pages.Participant.EditParticipantModel
+@{ 
+    ViewData["Title"] = "EditParticipant";
+}
+<head><script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script></head>
+<p>Editing @Model.Participant.Name</p>
+
+<div>
+    <form method="post">
+        <table>
+            <input type="hidden" name="id" value="@Model.Participant.Id" />
+            <tr>
+                <td><label>Name</label></td>
+                <td><<input name="name" value="@Model.Participant.Name" /></td>
+            </tr>
+            <tr>
+                <td><label>1. place</label></td>
+                <td><input pattern="[0-9]+" name="first" value="@Model.Participant.WonMatches" title="Must be a number" /></td>
+            </tr>
+            <tr>
+                <td><label>2. place</label></td>
+                <td><input pattern="[0-9]+" name="second" value="@Model.Participant.SecondMatches" title="Must be a number" /></td>
+            </tr>
+            <tr>
+                <td><label>Lost</label></td>
+                <td><input pattern="[0-9]+" name="lost" value="@Model.Participant.LostMatches" title="Must be a number" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save changes" /><td>
+            </tr>
+        </table>
+    </form>
+</div>

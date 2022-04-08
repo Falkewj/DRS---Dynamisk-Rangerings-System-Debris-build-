@@ -1,0 +1,18 @@
+
+﻿.padding-none {
+    padding: 0rem !important;
+    margin: 0rem !important;
+}
+
+.float-right {
+    float:right !important;
+}
+
+.settings-panel, .input-group-text {
+    width: 20rem;
+
+﻿.add-result-modal {
+    width:100rem;
+    max-width: 750px;
+
+}

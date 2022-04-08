@@ -1,0 +1,27 @@
+﻿@page
+@using DRS___Dynamisk_Rangerings_System.Models
+@model DRS___Dynamisk_Rangerings_System.Pages.Participant.AddParticipantModel
+@{
+    ViewData["Title"] = "AddParticipant";
+}
+
+<h1>Create a new participant</h1>
+
+<div class row>
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Participant.Name" class="form-control"></label>
+                <input asp-for="@Model.Participant.Name" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Add Participant" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<div>
+    <a asp-page="/Standings/Standings">Standings</a>
+</div>
