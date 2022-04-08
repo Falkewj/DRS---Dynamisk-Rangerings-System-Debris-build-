@@ -37,8 +37,15 @@ namespace DRS___Dynamisk_Rangerings_System.Services
 
             DbService = dbService;
             SettingsService = settingsService;
-            Participants = dbService.GetObjectsAsync().Result.ToList();
-            //Participants = MockData.MockParticipants.GetMockParticipants();
+            //Participants = dbService.GetObjectsAsync().Result.ToList();
+            var Flaske = dbService.GetObjectsAsync().Result;
+                
+
+            Participants = MockData.MockParticipants.GetMockParticipants();
+            foreach (var blah in Flaske)
+            {
+                Participants.Add(blah);
+            }
         }
         #endregion
 
