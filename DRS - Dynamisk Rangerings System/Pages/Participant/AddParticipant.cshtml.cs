@@ -13,11 +13,11 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Participant
     {
         [BindProperty]
         public Models.Participant Participant { get; set; }
-        private ParticipantService participantService { get; set; }
+        private ParticipantService ParticipantService { get; set; }
 
         public AddParticipantModel(ParticipantService participantService)
         {
-            this.participantService = participantService;
+            ParticipantService = participantService;
         }
 
 
@@ -33,8 +33,8 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Participant
                 return Page();
             }
 
-            participantService.AddParticipant(Participant);
-            return RedirectToPage("/Index");
+            ParticipantService.AddParticipant(Participant);
+            return RedirectToPage("/Standings/Standings");
         }
 
     }
