@@ -21,12 +21,15 @@ namespace DRS___Dynamisk_Rangerings_System.Migrations
             modelBuilder.Entity("DRS___Dynamisk_Rangerings_System.Models.Participant", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LostMatches")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecondMatches")

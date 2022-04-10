@@ -14,6 +14,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Participant
         [BindProperty]
         public Models.Participant Participant { get; set; }
         private ParticipantService ParticipantService { get; set; }
+        private IParticipantService PartService { get; set; }
 
         public AddParticipantModel(ParticipantService participantService)
         {
@@ -32,7 +33,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Participant
             {
                 return Page();
             }
-
+            //PartService.AddParticipant(Participant);
             ParticipantService.AddParticipant(Participant);
             return RedirectToPage("/Standings/Standings");
         }

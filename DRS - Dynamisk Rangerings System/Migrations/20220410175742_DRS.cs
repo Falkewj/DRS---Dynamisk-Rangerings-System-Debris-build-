@@ -2,7 +2,7 @@
 
 namespace DRS___Dynamisk_Rangerings_System.Migrations
 {
-    public partial class DRS___Dynamisk_Rangerings_System : Migration
+    public partial class DRS : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,8 +10,9 @@ namespace DRS___Dynamisk_Rangerings_System.Migrations
                 name: "Participants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WonMatches = table.Column<int>(type: "int", nullable: false),
                     SecondMatches = table.Column<int>(type: "int", nullable: false),
                     LostMatches = table.Column<int>(type: "int", nullable: false)

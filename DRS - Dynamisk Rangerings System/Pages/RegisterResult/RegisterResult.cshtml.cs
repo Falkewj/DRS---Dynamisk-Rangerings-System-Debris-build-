@@ -10,10 +10,11 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.RegisterResult
 {
     public class RegisterResultModel : PageModel
     {
-        private Match match;
+        //private Match Match { get; set; }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            
         }
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DRS___Dynamisk_Rangerings_System.Migrations
 {
     [DbContext(typeof(DRSDbContext))]
-    [Migration("20220405113209_DRS___Dynamisk_Rangerings_System")]
-    partial class DRS___Dynamisk_Rangerings_System
+    [Migration("20220410175742_DRS")]
+    partial class DRS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,12 +23,15 @@ namespace DRS___Dynamisk_Rangerings_System.Migrations
             modelBuilder.Entity("DRS___Dynamisk_Rangerings_System.Models.Participant", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("LostMatches")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecondMatches")

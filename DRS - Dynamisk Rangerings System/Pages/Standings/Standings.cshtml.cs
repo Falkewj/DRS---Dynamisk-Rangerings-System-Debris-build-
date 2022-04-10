@@ -83,6 +83,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Standings
         public IActionResult OnGetSortByPoints()
         {
             Participants = ParticipantService.SortParticipants(ParticipantService.SortingOptions.TotalPoints).ToList();
+            PointPairing = ParticipantService.PointPairing(Participants);
             return Page();
         }
         public IActionResult OnGetSortByPointsDescending()
