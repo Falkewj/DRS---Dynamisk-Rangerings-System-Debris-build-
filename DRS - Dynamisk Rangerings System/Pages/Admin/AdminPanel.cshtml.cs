@@ -18,6 +18,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Admin
 
         public SettingsService SettingsService { get; set; }
         private ParticipantService ParticipantService { get; set; }
+        private JsonFileService<Settings> JsonFileService { get; set; }
 
         //Settings Objects used to overwrite the ACTUAL settingsobject.
         [BindProperty] public Settings Settings { get; set; }
@@ -28,12 +29,19 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Admin
 
         #region Constructor
 
-        public Admin_PanelModel(SettingsService settingsService,ParticipantService participantService)
+        public Admin_PanelModel(SettingsService settingsService,ParticipantService participantService, JsonFileService<Settings> jsonFileService)
         {
             ParticipantService = participantService;
             SettingsService = settingsService;
+            JsonFileService = jsonFileService;
             Settings = new Settings();
-
+            // to avoid return page() without participants()
+            Participants = ParticipantService.GetParticipants().ToList();
+            ParticipantList = new List<SelectListItem>()
+            {
+                new SelectListItem("Choose..", "0")
+            };
+            ParticipantList.AddRange(Participants.Select(p => new SelectListItem(p.Name, p.Id.ToString())).ToList());
         }
 
         #endregion
@@ -42,12 +50,12 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Admin
 
         public void OnGet()
         {
-            Participants = ParticipantService.GetParticipants().ToList();
-            ParticipantList = new List<SelectListItem>()
-            {
-                new SelectListItem("Choose..", "0")
-            };
-            ParticipantList.AddRange(Participants.Select(p => new SelectListItem(p.Name, p.Id.ToString())).ToList());
+            //Participants = ParticipantService.GetParticipants().ToList();
+            //ParticipantList = new List<SelectListItem>()
+            //{
+            //    new SelectListItem("Choose..", "0")
+            //};
+            //ParticipantList.AddRange(Participants.Select(p => new SelectListItem(p.Name, p.Id.ToString())).ToList());
         }
 
         public IActionResult OnPost()
@@ -63,9 +71,10 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Admin
             return Page();
 
         }
-        public IActionResult OnPost(int Id)
+        public IActionResult OnPostEditParticipant()
         {
-            return Redirect("/Participant/EditParticipant/" + Id);
+
+            return Redirect("/Participant/EditParticipant/" + SelectedId);
 
         }
 

@@ -33,6 +33,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Standings
             ParticipantService = participantService;
 
             Participants = ParticipantService.GetParticipants().ToList();
+            PointPairing = ParticipantService.PointPairing(Participants);
 
             ParticipantListItems = new List<SelectListItem>() { new SelectListItem("Vælg en deltager..", "0") };
             ParticipantListItems.AddRange(Participants.Select(p => new SelectListItem(p.Name, p.Id.ToString())).ToList());

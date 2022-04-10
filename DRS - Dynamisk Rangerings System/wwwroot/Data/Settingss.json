@@ -1,8 +1,8 @@
 [
   {
-    "PointsForWin": 10,
+    "PointsForWin": 5,
     "PointsFor2nd": 2,
-    "PointsForLoss": 1,
-    "MaxPlayersPerMatch": 2
+    "PointsForLoss": 0,
+    "MaxPlayersPerMatch": 10
   }
 ]

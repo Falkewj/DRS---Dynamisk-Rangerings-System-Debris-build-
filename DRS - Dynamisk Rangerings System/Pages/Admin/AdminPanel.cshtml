@@ -14,7 +14,7 @@
                 <select id="inputSelect" asp-for="SelectedId" asp-items="Model.ParticipantList"></select>
 
 
-                <input type="submit" value="Edit" asp-page="../Participant/EditParticipant" asp-route-id="SelectedId" class="btn btn-primary" />
+                <input type="submit" value="Edit" asp-page-handler="EditParticipant" class="btn btn-primary" />
                 @*asp-page="../Participant/EditParticipant" asp-route-id="SelectedId" - kan ikke gribe SelectedId*@
             </div>
         </form>
