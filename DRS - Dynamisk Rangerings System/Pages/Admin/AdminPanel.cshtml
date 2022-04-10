@@ -1,9 +1,26 @@
 ﻿@page
 @model DRS___Dynamisk_Rangerings_System.Pages.Admin.Admin_PanelModel
-@{ 
+@{
     ViewData["Title"] = "AdminPanel";
 }
+<h3>Edit Participant</h3>
 
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+
+            <div class="form-group">
+                <select id="inputSelect" asp-for="SelectedId" asp-items="Model.ParticipantList"></select>
+
+
+                <input type="submit" value="Edit" asp-page="../Participant/EditParticipant" asp-route-id="SelectedId" class="btn btn-primary" />
+                @*asp-page="../Participant/EditParticipant" asp-route-id="SelectedId" - kan ikke gribe SelectedId*@
+            </div>
+        </form>
+    </div>
+</div>
+<h4>Edit Settings</h4>
 <div class="settings-container">
 
     <form method="post">

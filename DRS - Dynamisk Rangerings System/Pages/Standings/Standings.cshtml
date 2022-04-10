@@ -37,7 +37,7 @@
 
                     <div class="modal-body form-group">
 
-                        @for (int i = 0; i < Model.SettingsService.GetMaxParticipants(); i++)
+                        @for (int i = 0; i < Model.NumberOfParticipants; i++)
                         {
 
                             <div class="input-group mb-3">
@@ -138,31 +138,31 @@
 
         @if (@Model.Participants != null)
         {
-            foreach (var participant in Model.Participants)
+            foreach (var participant in Model.PointPairing)
             {
 
                 <tr>
                     <td>
-                        @participant.Name
+                        @participant.Item3.Name
                     </td>
                     <td>
-                        @Model.ParticipantService.CalculateMatches(participant)
+                        @participant.Item2
                     </td>
                     <td>
-                        @Model.SettingsService.CalculatePoints(participant)
+                        @participant.Item1
                     </td>
                     <td>
-                        @participant.WonMatches
+                        @participant.Item3.WonMatches
                     </td>
                     <td>
-                        @participant.SecondMatches
+                        @participant.Item3.SecondMatches
                     </td>
                     <td>
-                        @participant.LostMatches
+                        @participant.Item3.LostMatches
                     </td>
                     @if (AdminLoginModel.Admin != null && AdminLoginModel.Admin.UserName == "admin")
                     {
-                        <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="/Participant/EditParticipant" asp-route-id="@participant.Id"><i class="fa fa-edit"></i></a></td>
+                        <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="/Participant/EditParticipant" asp-route-id="@participant.Item3.Id"><i class="fa fa-edit"></i></a></td>
                     }
                 </tr>
 

@@ -16,11 +16,13 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Standings
         #region Properties
         public List<Models.Participant> Participants { get; set; }
         public bool IsAdmin { get; set; }
-        public ParticipantService ParticipantService { get; set; }
-        public SettingsService SettingsService { get; set; }
+        private ParticipantService ParticipantService { get; set; }
+        private SettingsService SettingsService { get; set; }
         private ParticipantService participantService;
         private SettingsService settingsService;
         public List<Tuple<int,int, Models.Participant>> PointPairing { get; set; }
+
+        [BindProperty] public int NumberOfParticipants { get; set; }
 
         [BindProperty] public List<int> SelectedPartipantIDs { get; set; }
         public List<SelectListItem> ParticipantListItems { get; set; }
@@ -39,6 +41,7 @@ namespace DRS___Dynamisk_Rangerings_System.Pages.Standings
 
             this.settingsService = settingsService;
             this.participantService = participantService;
+            NumberOfParticipants = settingsService.GetMaxParticipants();
         }
 
         public IActionResult OnPost()
