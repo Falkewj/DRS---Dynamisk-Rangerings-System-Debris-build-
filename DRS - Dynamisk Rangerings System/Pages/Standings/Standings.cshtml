@@ -15,12 +15,14 @@
         }
     </script>
 }
-
-<div style="float:right;" class="add-result-button mb-2">
-    <button onclick="showModal('add_result_modal')" class="btn btn-primary">
-        <i class="fa fa-sm fa-flag-checkered"></i>
-    </button>
-</div>
+@if (AdminLoginModel.Admin != null && AdminLoginModel.Admin.UserName == "admin")
+{
+    <div style="float: right;" class="add-result-button mb-2">
+        <button onclick="showModal('add_result_modal')" class="btn btn-primary">
+            <i class="fa fa-sm fa-flag-checkered"></i>
+        </button>
+    </div>
+}
 
 <!--#Region Add Result Modal -->
 <div class="modal" id="add_result_modal">
@@ -130,8 +132,15 @@
                         <a data-toggle="tooltip" title="Sort By Seconds Descending" asp-page-handler="SortByLossDescending"><i class="fa fa-angle-down"></i></a>
                     </div>
                 </div>
-
             </th>
+            @if (AdminLoginModel.Admin != null && AdminLoginModel.Admin.UserName == "admin")
+            {
+                <th>
+                    <div class="d-flex justify-content-between p-0">
+                        <div>Options</div>
+                    </div>
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
