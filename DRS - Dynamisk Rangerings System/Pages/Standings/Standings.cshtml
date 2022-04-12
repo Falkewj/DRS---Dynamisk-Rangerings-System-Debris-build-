@@ -174,7 +174,8 @@
                     {
                         if (participant.Item3.Id == 0)
                         {
-                <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" asp-page="/standings/standings" title="Edit"><i class="fa fa-edit"> Reload</i></a></td>
+                            Response.Redirect("../Standings/Standings");
+                            //<a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" asp-page="/standings/standings" title="Edit"><i class="fa fa-edit"> Reload</i></a></td>
                         }
                         else
                         {
