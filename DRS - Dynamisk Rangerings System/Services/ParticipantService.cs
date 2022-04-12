@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using DRS___Dynamisk_Rangerings_System.MockData;
@@ -96,9 +97,7 @@ namespace DRS___Dynamisk_Rangerings_System.Services
         /// <returns>Null if no participant was found, participant object, if found.</returns>
         public Participant GetParticipant(int id)
         {
-
-            return (from participant in Participants where (participant.Id == id) select participant).SingleOrDefault();
-
+            return (from participant in Participants where (participant.Id == id) select participant).First(); // skiftet til .first fra .SingleOrDefaullt for at undgå MockData error
         }
 
         /// <summary>
