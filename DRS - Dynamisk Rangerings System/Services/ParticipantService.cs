@@ -97,7 +97,7 @@ namespace DRS___Dynamisk_Rangerings_System.Services
         /// <returns>Null if no participant was found, participant object, if found.</returns>
         public Participant GetParticipant(int id)
         {
-            return (from participant in Participants where (participant.Id == id) select participant).First(); // skiftet til .first fra .SingleOrDefaullt for at undgå MockData error
+            return (from participant in Participants where (participant.Id == id) select participant).FirstOrDefault(); // skiftet til .firstOrDefault fra .SingleOrDefaullt for at undgå MockData error
         }
 
         /// <summary>

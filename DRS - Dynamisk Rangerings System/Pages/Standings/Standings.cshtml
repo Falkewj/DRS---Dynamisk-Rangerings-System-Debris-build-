@@ -1,6 +1,7 @@
 ﻿@page "{handler?}"
 @using DRS___Dynamisk_Rangerings_System.Services
 @using DRS___Dynamisk_Rangerings_System.Pages.Admin
+@using System.Diagnostics.Eventing.Reader
 @model DRS___Dynamisk_Rangerings_System.Pages.Standings.StandingsModel
 @{
     ViewData["Title"] = "Standings";
@@ -171,7 +172,15 @@
                     </td>
                     @if (AdminLoginModel.Admin != null && AdminLoginModel.Admin.UserName == "admin")
                     {
-                        <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="/Participant/EditParticipant" asp-route-id="@participant.Item3.Id"><i class="fa fa-edit"></i></a></td>
+                        if (participant.Item3.Id == 0)
+                        {
+                <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" asp-page="/standings/standings" title="Edit"><i class="fa fa-edit"> Reload</i></a></td>
+                        }
+                        else
+                        {
+                            <td><a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="/Participant/EditParticipant" asp-route-id="@participant.Item3.Id"><i class="fa fa-edit"></i></a></td>
+                        }
+                        
                     }
                 </tr>
 
