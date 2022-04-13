@@ -2,7 +2,7 @@
 
 namespace DRS___Dynamisk_Rangerings_System.Migrations
 {
-    public partial class DRS : Migration
+    public partial class drs2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

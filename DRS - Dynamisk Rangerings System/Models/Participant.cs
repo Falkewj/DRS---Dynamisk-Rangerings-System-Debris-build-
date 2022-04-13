@@ -20,9 +20,9 @@ namespace DRS___Dynamisk_Rangerings_System.Models
         public int  LostMatches { get; set; }
 
         #region Constructor
-        public Participant(int id, string name, int wonMatches, int secondMatches, int lostMatches)
+        public Participant(string name, int wonMatches, int secondMatches, int lostMatches)
         {
-            Id = id;
+            //Id = id;
             Name = name;
             WonMatches = wonMatches;
             SecondMatches = secondMatches;

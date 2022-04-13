@@ -12,8 +12,8 @@ namespace DRS___Dynamisk_Rangerings_System.MockData
 
         private static List<Participant> participants = new List<Participant>()
         {
-            new Participant(1,"Test", 1, 1, 1),
-            new Participant(2,"Participant 2", 4, 2, 1)
+            new Participant("Test", 1, 1, 1),
+            new Participant("Participant 2", 4, 2, 1)
         };
 
         public static List<Participant> GetMockParticipants()

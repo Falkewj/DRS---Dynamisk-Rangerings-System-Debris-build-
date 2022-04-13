@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DRS___Dynamisk_Rangerings_System.Migrations
 {
     [DbContext(typeof(DRSDbContext))]
-    [Migration("20220410175742_DRS")]
-    partial class DRS
+    [Migration("20220412223058_drs2")]
+    partial class drs2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

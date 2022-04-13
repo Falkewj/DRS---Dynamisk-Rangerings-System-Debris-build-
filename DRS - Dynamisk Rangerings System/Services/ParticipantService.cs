@@ -41,7 +41,7 @@ namespace DRS___Dynamisk_Rangerings_System.Services
             Participants = dbService.GetObjectsAsync().Result.ToList();
             //Participants = MockParticipants.GetMockParticipants();
 
-            if (Participants.Count <= 3)
+            if (Participants.Count <= 0)
             {
                 List<Participant> flaske = MockParticipants.GetMockParticipants();
                 foreach (Participant blah in flaske)
